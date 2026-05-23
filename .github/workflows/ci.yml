@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-linux:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libssl-dev libsecp256k1-dev pkg-config \
+            libgtk-4-dev libadwaita-1-dev libsecret-1-dev
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+
+      - name: Build headless bridge
+        run: cargo build --release -p brightnexus-bridge
+
+      - name: Test
+        env:
+          BRIGHTNEXUS_GEO_SOURCE: fixed
+        run: cargo test --workspace
+
+      - name: Build GTK UI
+        run: cargo build --release -p brightnexus-gtk --features ui
+
+  # Optional TPM2 smoke (requires swtpm + libtss2-dev). Enable when CI runners
+  # have a software TPM; otherwise build with --features tpm2 locally.
+  test-tpm2-optional:
+    runs-on: ubuntu-24.04
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+      - name: Install TPM2 deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y swtpm swtpm-tools libtss2-dev libssl-dev libsecp256k1-dev
+      - name: Build with tpm2 feature
+        run: cargo build --release -p brightnexus-bridge --features tpm2
+
+  test-macos-headless:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+      - name: Test
+        env:
+          BRIGHTNEXUS_GEO_SOURCE: fixed
+        run: cargo test -p brightnexus-core -p brightnexus-platform -p brightnexus-bridge

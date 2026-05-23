@@ -1,0 +1,34 @@
+Source: brightnexus
+Section: utils
+Priority: optional
+Maintainer: Jessica Mulein <jessica@digitaldefiance.org>
+Rules-Requires-Root: no
+Build-Depends:
+ debhelper-compat (= 13),
+ cargo,
+ rustc (>= 1.74),
+ libssl-dev,
+ libsecp256k1-dev,
+ pkg-config,
+ libgtk-4-dev,
+ libadwaita-1-dev,
+ libsecret-1-dev
+Standards-Version: 4.6.2
+Homepage: https://linexus.digitaldefiance.org
+Vcs-Git: https://github.com/Digital-Defiance/BrightNexus-linux.git
+Vcs-Browser: https://github.com/Digital-Defiance/BrightNexus-linux
+
+Package: brightnexus
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libgtk-4-1, libadwaita-1-0, libsecret-1-0
+Description: BrightNexus for Linux — TPM2-backed BrightLink bridge
+ BrightNexus for Linux is the hardware-anchored BrightLink credential agent
+ for Ubuntu and other Linux desktops. It exposes EBP/1 + BrightLink on a
+ per-user Unix socket and provides a GTK4 system-tray UI for live credentials.
+ .
+ This package installs:
+  * brightnexus — GTK4 / libadwaita system-tray application
+  * brightnexus-bridge — headless bridge binary for servers and CI
+ .
+ Bridge identity prefers TPM2 when available; set BRIGHTNEXUS_REQUIRE_HARDWARE=1
+ to refuse software-only fallback.

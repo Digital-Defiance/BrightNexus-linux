@@ -1,0 +1,14 @@
+/target
+**/*.rs.bk
+Cargo.lock
+.idea
+.vscode
+*.deb
+*.ddeb
+*.buildinfo
+*.changes
+*.upload
+debian/.debhelper/
+debian/files
+debian/*.substvars
+debian/*.debhelper.log

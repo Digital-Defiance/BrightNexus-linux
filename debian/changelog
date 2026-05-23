@@ -1,0 +1,7 @@
+brightnexus (0.1.0-1) noble; urgency=medium
+
+  * Initial Debian packaging for BrightNexus for Linux.
+  * Ship brightnexus (GTK tray) and brightnexus-bridge binaries.
+  * EBP/1 + BrightLink wire-compatible with macOS BrightNexus.
+
+ -- Jessica Mulein <jessica@digitaldefiance.org>  Sat, 23 May 2026 12:00:00 +0000

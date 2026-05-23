@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+export CARGO_HOME = $(CURDIR)/debian/cargo-home
+export CARGO_TERM_COLOR = never
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	cargo build --release --manifest-path Cargo.toml \
+		-p brightnexus-gtk \
+		-p brightnexus-bridge
+
+override_dh_auto_install:
+	install -D target/release/brightnexus debian/brightnexus/usr/bin/brightnexus
+	install -D target/release/brightnexus-bridge debian/brightnexus/usr/bin/brightnexus-bridge
+
+override_dh_auto_test:
+	cargo test -p brightnexus-core -p brightnexus-platform -p brightnexus-bridge

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=BrightNexus
+Comment=BrightLink credential bridge for Linux
+Exec=brightnexus
+Icon=brightnexus
+Categories=Utility;Security;
+StartupNotify=true
+Terminal=false
+X-GNOME-Autostart-enabled=true

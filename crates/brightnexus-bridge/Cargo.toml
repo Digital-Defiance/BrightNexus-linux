@@ -1,0 +1,32 @@
+[package]
+name = "brightnexus-bridge"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Headless BrightNexus bridge binary"
+
+[[bin]]
+name = "brightnexus-bridge"
+path = "src/main.rs"
+
+[dependencies]
+brightnexus-core = { path = "../brightnexus-core" }
+brightnexus-platform = { path = "../brightnexus-platform" }
+anyhow.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+
+[features]
+default = []
+tpm2 = ["brightnexus-platform/tpm2"]
+geoclue = ["brightnexus-platform/geoclue"]
+
+[dev-dependencies]
+tempfile = "3"
+serde_json.workspace = true
+base64.workspace = true
+brightnexus-core = { path = "../brightnexus-core" }
+brightnexus-platform = { path = "../brightnexus-platform" }
+rand.workspace = true
+secp256k1.workspace = true

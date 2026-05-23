@@ -1,0 +1,14 @@
+{
+  "description": "BrightLink session HKDF-SHA256 (RFC §4.5.2), aligned with libbrightlink",
+  "ikm": {
+    "clientShare": "0202020202020202020202020202020202020202020202020202020202020202",
+    "bridgeShare": "0404040404040404040404040404040404040404040404040404040404040404"
+  },
+  "salt": {
+    "clientNonce": "01010101010101010101010101010101",
+    "sessionId": "03030303030303030303030303030303"
+  },
+  "info": "brightlink-session-key-v1",
+  "length": 32,
+  "kSession": "88607380beebf0efda2137ddee21cdf3413ca87dfc3cbde4f0a2302bd87a4b6d"
+}

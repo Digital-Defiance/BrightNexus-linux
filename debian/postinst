@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+
+# Create ~/.brightchain/brightnexus skeleton for the installing user (mode 0700).
+if [ "$1" = "configure" ]; then
+    target_user="${SUDO_USER:-$USER}"
+    if [ -n "$target_user" ] && [ "$target_user" != "root" ]; then
+        home="$(getent passwd "$target_user" | cut -d: -f6)"
+        if [ -n "$home" ] && [ -d "$home" ]; then
+            install -d -m 700 -o "$target_user" -g "$target_user" "$home/.brightchain"
+            install -d -m 700 -o "$target_user" -g "$target_user" "$home/.brightchain/brightnexus"
+        fi
+    fi
+fi
+
+#DEBHELPER#
+
+exit 0

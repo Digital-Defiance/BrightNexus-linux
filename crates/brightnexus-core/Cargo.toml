@@ -1,0 +1,31 @@
+[package]
+name = "brightnexus-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "BrightLink / EBP/1 bridge core (protocol, crypto, store)"
+
+[dependencies]
+aes-gcm.workspace = true
+anyhow.workspace = true
+async-trait.workspace = true
+base64.workspace = true
+chrono.workspace = true
+hkdf.workspace = true
+p256.workspace = true
+rand.workspace = true
+secp256k1.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+zeroize.workspace = true
+nix = { workspace = true, features = ["socket"] }
+hex.workspace = true
+
+[dev-dependencies]
+hex.workspace = true
+tempfile = "3"

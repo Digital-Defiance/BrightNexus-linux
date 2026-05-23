@@ -1,0 +1,5 @@
+# BrightNexus-linux requires Rust 1.85+ (edition 2024 in transitive crypto crates).
+# Install via rustup: https://rustup.rs — do not use Ubuntu apt `cargo` (1.75 on Noble).
+[toolchain]
+channel = "stable"
+profile = "minimal"

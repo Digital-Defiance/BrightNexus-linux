@@ -1,0 +1,27 @@
+[package]
+name = "brightnexus-gtk"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "BrightNexus for Linux — GTK4 system-tray application"
+
+[[bin]]
+name = "brightnexus"
+path = "src/main.rs"
+
+[features]
+default = ["ui"]
+ui = ["dep:gtk4", "dep:libadwaita", "dep:glib"]
+
+[dependencies]
+brightnexus-core = { path = "../brightnexus-core" }
+brightnexus-platform = { path = "../brightnexus-platform" }
+anyhow.workspace = true
+async-trait.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+tokio.workspace = true
+gtk4 = { version = "0.9", features = ["v4_12"], optional = true }
+libadwaita = { version = "0.7", features = ["v1_5"], optional = true }
+glib = { version = "0.20", optional = true }
