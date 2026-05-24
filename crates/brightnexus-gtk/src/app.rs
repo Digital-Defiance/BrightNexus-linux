@@ -4,7 +4,7 @@ use brightnexus_core::Bridge;
 use gtk4::prelude::*;
 use gtk4::{Box as GtkBox, Button, Label, Orientation, ScrolledWindow};
 use libadwaita as adw;
-use libadwaita::prelude::{AdwApplicationWindowExt, ViewStackExt};
+use libadwaita::prelude::AdwApplicationWindowExt;
 
 use crate::settings;
 use crate::tray::TrayManager;
@@ -28,8 +28,8 @@ pub fn activate(app: &adw::Application, bridge: Arc<Bridge>) {
     header.pack_end(&settings_btn);
 
     let stack = adw::ViewStack::new();
-    stack.add_titled(build_dashboard(&bridge), Some("dashboard"), "Dashboard");
-    stack.add_titled(build_credentials(&bridge), Some("credentials"), "Credentials");
+    stack.add_titled(&build_dashboard(&bridge), Some("dashboard"), "Dashboard");
+    stack.add_titled(&build_credentials(&bridge), Some("credentials"), "Credentials");
 
     let stack_switcher = adw::ViewSwitcher::new();
     stack_switcher.set_stack(Some(&stack));

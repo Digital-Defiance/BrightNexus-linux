@@ -35,8 +35,8 @@ pub fn open_settings_dialog(bridge: &Arc<Bridge>) {
     dialog.add_response("save", "Save");
     dialog.set_response_appearance("save", adw::ResponseAppearance::Suggested);
 
-    dialog.connect_response(move |d, resp| {
-        if resp == "save" {
+    dialog.connect_response(move |dialog: adw::MessageDialog, response: &str| {
+        if response == "save" {
             policy::set_peer_attestation_mode(if enforce.is_active() {
                 PeerAttestationMode::Enforce
             } else {
@@ -44,7 +44,7 @@ pub fn open_settings_dialog(bridge: &Arc<Bridge>) {
             });
             policy::set_ttl_ceiling(ttl_spin.value() as i64);
         }
-        d.close();
+        dialog.close();
     });
 
     dialog.present();

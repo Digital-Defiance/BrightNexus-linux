@@ -1,4 +1,5 @@
 use std::fs;
+#[cfg(feature = "tpm2")]
 use std::path::Path;
 use std::sync::Arc;
 
@@ -51,6 +52,7 @@ pub fn select_bridge_identity(paths: &Paths) -> Result<Arc<dyn BridgeIdentity>> 
     Ok(Arc::new(FileBridgeIdentity::open_or_create(paths)?))
 }
 
+#[cfg(feature = "tpm2")]
 fn tpm_available() -> bool {
     Path::new("/dev/tpmrm0").exists() || Path::new("/dev/tpm0").exists()
 }

@@ -7,7 +7,6 @@ use brightnexus_core::identity::{compute_key_id, BridgeIdentity, BridgeIdentityK
 use brightnexus_core::paths::Paths;
 use brightnexus_core::Result;
 use p256::ecdsa::{signature::Signer, Signature, SigningKey, VerifyingKey};
-use p256::elliptic_curve::sec1::ToEncodedPoint;
 use p256::SecretKey;
 use rand::rngs::OsRng;
 use zeroize::Zeroizing;
