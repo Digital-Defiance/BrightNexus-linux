@@ -4,6 +4,7 @@ use brightnexus_core::Bridge;
 use gtk4::prelude::*;
 use gtk4::{Box as GtkBox, Button, Label, Orientation, ScrolledWindow};
 use libadwaita as adw;
+use libadwaita::prelude::{AdwApplicationWindowExt, ViewStackExt};
 
 use crate::settings;
 use crate::tray::TrayManager;

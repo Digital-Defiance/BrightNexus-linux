@@ -1,5 +1,4 @@
 mod app;
-mod geo_prompt;
 mod settings;
 mod tray;
 
@@ -9,7 +8,7 @@ use brightnexus_core::paths::Paths;
 use brightnexus_core::Bridge;
 use brightnexus_platform::{select_bridge_identity, select_geo_source};
 use gtk4::prelude::*;
-use gtk4::{gio, glib};
+use gtk4::glib;
 use libadwaita as adw;
 use tracing_subscriber::EnvFilter;
 

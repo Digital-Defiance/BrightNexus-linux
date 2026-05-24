@@ -5,6 +5,7 @@ use brightnexus_core::Bridge;
 use gtk4::prelude::*;
 use gtk4::{Box as GtkBox, CheckButton, Label, Orientation, SpinButton};
 use libadwaita as adw;
+use libadwaita::prelude::MessageDialogExt;
 
 pub fn open_settings_dialog(bridge: &Arc<Bridge>) {
     let dialog = adw::MessageDialog::new(
@@ -46,11 +47,7 @@ pub fn open_settings_dialog(bridge: &Arc<Bridge>) {
         d.close();
     });
 
-    if let Some(w) = adw::Application::default().and_then(|a| a.active_window()) {
-        dialog.present(Some(&w));
-    } else {
-        dialog.present(None);
-    }
+    dialog.present();
 }
 
 pub fn show_geo_prompt(
