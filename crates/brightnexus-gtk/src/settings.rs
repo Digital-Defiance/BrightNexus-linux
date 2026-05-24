@@ -35,7 +35,7 @@ pub fn open_settings_dialog(bridge: &Arc<Bridge>) {
     dialog.add_response("save", "Save");
     dialog.set_response_appearance("save", adw::ResponseAppearance::Suggested);
 
-    dialog.connect_response(move |dialog: adw::MessageDialog, response: &str| {
+    dialog.connect_response(None, move |dialog, response| {
         if response == "save" {
             policy::set_peer_attestation_mode(if enforce.is_active() {
                 PeerAttestationMode::Enforce
