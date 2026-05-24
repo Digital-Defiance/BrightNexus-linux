@@ -31,6 +31,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source "$HOME/.cargo/env"
 rustup default stable
 rustc --version   # must be 1.85.0 or newer
+cargo --version   # must match rustup, not /usr/bin/cargo
+which cargo       # should be $HOME/.cargo/bin/cargo
 ```
 
 If compile errors mention `peer_cred` or `E0658` (unstable), the active toolchain is too old — run `rustup update stable` and confirm `rustc --version` is **1.85+** (Noble's `apt install cargo` ships Rust 1.75 and will not work).

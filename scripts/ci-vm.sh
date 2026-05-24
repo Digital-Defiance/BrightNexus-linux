@@ -120,6 +120,9 @@ fi
 source "$HOME/.cargo/env"
 rustup default stable
 
+cargo --version   # must match rustup, not /usr/bin/cargo
+which cargo       # should be $HOME/.cargo/bin/cargo
+
 rustc_version="$(rustc --version | awk '{print $2}')"
 echo "rustc $rustc_version ($(command -v rustc))"
 
