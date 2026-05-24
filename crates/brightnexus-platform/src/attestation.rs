@@ -25,17 +25,16 @@ pub fn attest_stream(stream: &UnixStream) -> PeerInfo {
 
 #[cfg(target_os = "linux")]
 fn peer_cred(stream: &UnixStream) -> Option<PeerInfo> {
-    use std::os::unix::io::AsFd;
     use nix::sys::socket::{getsockopt, sockopt::PeerCredentials};
 
-    let cred = getsockopt(stream.as_fd(), PeerCredentials).ok()?;
-    let pid = cred.pid as u32;
+    let cred = getsockopt(stream, PeerCredentials).ok()?;
+    let pid = cred.pid() as u32;
     let exe = fs::read_link(format!("/proc/{pid}/exe"))
         .ok()
         .map(|p| p.to_string_lossy().into_owned());
     Some(PeerInfo {
         pid: Some(pid),
-        uid: Some(cred.uid as u32),
+        uid: Some(cred.uid() as u32),
         executable_path: exe.clone(),
         display_label: exe,
         ..Default::default()
